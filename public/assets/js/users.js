@@ -109,3 +109,19 @@ $('#btnedit').on('click',function(){
         }
     })
 })
+// 单个删除功能
+$('tbody').on('click','.del',function(){
+    let id=$(this).siblings('.edit').attr('data-id')
+    // console.log(id);
+    if(confirm('确实删除此用户吗？')){
+        $.ajax({
+            type:'delete',
+            url:'/users/'+id,
+            success:function(res){
+                let index=getAry.findIndex(itme=>itme._id==res._id)
+                getAry.splice(index,1);
+                render()
+            }
+        }) 
+    }  
+})
