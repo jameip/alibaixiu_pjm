@@ -80,6 +80,8 @@
             </div>
             <div class="form-group">
               <button class="btn btn-primary" type="button" id="btnAdd">添加</button>
+              <button class="btn btn-primary" type="button" id="btnedit" style="display:none" >编辑</button>
+
             </div>
           </form>
         </div>
@@ -165,7 +167,7 @@
       <td>{{$value.status == 1 ? '激活': '未激活'}}</td>
       <td>{{$value.role == 'admin' ? '超级管理员': '普通用户'}}</td>
       <td class="text-center">
-        <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
+        <a href="javascript:;" class="btn btn-default btn-xs edit">编辑</a>
         <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
       </td>
     </tr>
