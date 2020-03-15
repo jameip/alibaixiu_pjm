@@ -1,9 +1,10 @@
 <script src="/login/status"></script>
-<script >
-  if(!isLogin)  location.href='login.html';    
+<script>
+  if (!isLogin) location.href = 'login.html';    
 </script>
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <title>Users &laquo; Admin</title>
@@ -13,6 +14,7 @@
   <link rel="stylesheet" href="../assets/css/admin.css">
   <script src="../assets/vendors/nprogress/nprogress.js"></script>
 </head>
+
 <body>
   <script>NProgress.start()</script>
 
@@ -21,7 +23,7 @@
       <button class="btn btn-default navbar-btn fa fa-bars"></button>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="javascript:;"id="logout"><i class="fa fa-sign-out"></i>退出</a></li>
+        <li><a href="javascript:;" id="logout"><i class="fa fa-sign-out"></i>退出</a></li>
       </ul>
     </nav>
     <div class="container-fluid">
@@ -41,9 +43,11 @@
               <div class="form-group">
                 <label class="form-image">
                   <input id="avatar" type="file">
-                  <img src="../assets/img/default.png">
+                  <img src="../assets/img/default.png" id="pic">
                   <i class="mask fa fa-upload"></i>
                 </label>
+                <!-- 添加隐藏域存放图片地址 -->
+                <input type="hidden" name="avatar" id="hidden">
               </div>
             </div>
             <div class="form-group">
@@ -86,7 +90,7 @@
           </div>
           <table class="table table-striped table-bordered table-hover">
             <thead>
-               <tr>
+              <tr>
                 <th class="text-center" width="40"><input type="checkbox"></th>
                 <th class="text-center" width="80">头像</th>
                 <th>邮箱</th>
@@ -97,42 +101,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="../assets/img/default.png"></td>
-                <td>coder@itcast.cn</td>
-                <td>coder</td>
-                <td>激活</td>
-                <td>普通用户</td>
-                <td class="text-center">
-                  <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="../assets/img/default.png"></td>
-                <td>coder@itcast.cn</td>
-                <td>coder</td>
-                <td>激活</td>
-                <td>普通用户</td>
-                <td class="text-center">
-                  <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="../assets/img/default.png"></td>
-                <td>coder@itcast.cn</td>
-                <td>coder</td>
-                <td>激活</td>
-                <td>普通用户</td>
-                <td class="text-center">
-                  <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
+
             </tbody>
           </table>
         </div>
@@ -180,6 +149,29 @@
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/users.js"></script>
+  <script src="../assets/vendors/art-template/template-web.js"></script>
+  <script type="text/html" id="tpl">
+    {{each data}}
+    <tr>
+      <td class="text-center"><input type="checkbox"></td>
+      <td class="text-center">
+        {{if $value.avatar}}
+            <img class="avatar" src="{{$value.avatar}}">
+        {{/if}}
+      </td>
+      <td>{{$value.email}}</td>
+      <td>{{$value.nickName}}</td>
+      <td>{{$value.status == 0 ? '未激活': '激活'}}</td>
+      <td>{{$value.role == admin ? '管理员': '普通用户'}}</td>
+      <td class="text-center">
+        <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
+        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    {{/each}}
+  </script>
   <script>NProgress.done()</script>
 </body>
+
 </html>
