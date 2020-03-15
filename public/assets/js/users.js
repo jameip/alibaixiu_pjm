@@ -6,10 +6,14 @@ $.ajax({
     success:function(res){
         getAry=res
         console.log(getAry);  
-        var html=template('tpl',{data:getAry});
-        $('tbody').html(html)    
+        render()
     }
 });
+// 渲染到页面函数
+function render(){
+    var html=template('tpl',{data:getAry});
+        $('tbody').html(html)  
+}
 // 头像上传功能
 $('#avatar').on('change',function(){
     let formData=new FormData();
@@ -25,6 +29,30 @@ $('#avatar').on('change',function(){
             // console.log(res[0].avatar);    
             $('#pic').attr('src',res[0].avatar);
             $('#hidden').val(res[0].avatar);
+        }
+    })
+});
+// 添加用户功能
+
+$('#btnAdd').on('click',function(){
+    let data = $("form").serialize();
+    $.ajax({
+        type:'post',
+        url:'/users',
+        data:data,
+        success:function(res){
+            getAry.push(res)
+            render();
+            // 将表单数据清空
+            $('input[name="email"]').val('');
+            $('input[name="nickName"]').val('');
+            $('input[name="password"]').val('');
+            $('#status0').prop('checked',false);
+            $('#status1').prop('checked',false);
+            $('#admin').prop('checked',false);
+            $('#normal').prop('checked',false);
+            $('#hidden').val('')
+            $('#pic').attr('src','../assets/img/default.png')
         }
     })
 })
