@@ -56,6 +56,8 @@ $('#btnEdit').on('click',function(){
             render();
             $('input[name="title"]').val('');
             $('input[name="className"]').val('')
+            $('#btnAdd').show()
+            $('#btnEdit').hide()
         }    
     })    
 })

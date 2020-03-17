@@ -177,7 +177,4 @@ $('#delmany').on('click', function () {
             }
         })
     }
-
-
-
 })
