@@ -152,7 +152,7 @@ $('tbody').on('change', '.checkOne', function () {
 })
 // 完成批量删除操作
 $('#delmany').on('click', function () {
-    let ids = [];//需要操作的那两个数组在哪
+    let ids = [];
     let inputs = $('tbody').find('input:checked')
     inputs.each(function (index, val) {
         ids.push($(val).attr('data-id'))
