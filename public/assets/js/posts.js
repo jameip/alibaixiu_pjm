@@ -21,13 +21,6 @@ function render(cid,state,page=1){
         }
     })
 }
-//时间格式处理
-function format(str) {
-    let iota1 = str.split(".")[0];
-    let iota2 = iota1.split("T");
-    let newTime = iota2.join(" ");
-    return newTime;
-};
 // 分页功能
 var currentpage=1
 function changepage(page) {
