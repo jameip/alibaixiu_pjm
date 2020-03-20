@@ -1,15 +1,17 @@
 <script>
   // 根据返回的值来判断客户是从哪个页面进入，如果没有id就跳回到主页
-  function getParms(key) {
+  function getParms(keys) {
     let parms = location.search.substr(1).split('&');
     for (var i = 0; i < parms.length; i++) {
       let temp = parms[i].split('=')
-      if (temp[0] == key) return temp[1]
+      if (temp[0] == keys) return temp[1]
     }
     return -1;
   }
-  let id = getParms('id');
-  if (id == -1) {
+  let keys = getParms('key');
+  // console.log(keys);
+  
+  if (keys == -1) {
     location.href = 'index.html'
   }
 </script>
@@ -62,51 +64,6 @@
       <div class="widgets">
         <h4>随机推荐</h4>
         <ul class="body random">
-          <!-- <li>
-            <a href="javascript:;">
-              <p class="title">废灯泡的14种玩法 妹子见了都会心动</p>
-              <p class="reading">阅读(819)</p>
-              <div class="pic">
-                <img src="uploads/widget_1.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <p class="title">可爱卡通造型 iPhone 6防水手机套</p>
-              <p class="reading">阅读(819)</p>
-              <div class="pic">
-                <img src="uploads/widget_2.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <p class="title">变废为宝！将手机旧电池变为充电宝的Better</p>
-              <p class="reading">阅读(819)</p>
-              <div class="pic">
-                <img src="uploads/widget_3.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <p class="title">老外偷拍桂林芦笛岩洞 美如“地下彩虹”</p>
-              <p class="reading">阅读(819)</p>
-              <div class="pic">
-                <img src="uploads/widget_4.jpg" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <p class="title">doge神烦狗打底南瓜裤 就是如此魔性</p>
-              <p class="reading">阅读(819)</p>
-              <div class="pic">
-                <img src="uploads/widget_5.jpg" alt="">
-              </div>
-            </a>
-          </li> -->
         </ul>
       </div>
       <div class="widgets">
@@ -195,82 +152,6 @@
     </div>
     <div class="content">
       <div class="panel new">
-        <!-- <h3>会生活</h3>
-        <div class="entry">
-          <div class="head">
-            <a href="detail.html">星球大战：原力觉醒视频演示 电影票68</a>
-          </div>
-          <div class="main">
-            <p class="info">admin 发表于 2020-02-01</p>
-            <p class="brief">
-              星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯
-            </p>
-            <p class="extra">
-              <span class="reading">阅读(3406)</span>
-              <span class="comment">评论(0)</span>
-              <a href="javascript:;" class="like">
-                <i class="fa fa-thumbs-up"></i>
-                <span>赞(167)</span>
-              </a>
-              <a href="javascript:;" class="tags">
-                分类：<span>星球大战</span>
-              </a>
-            </p>
-            <a href="javascript:;" class="thumb">
-              <img src="uploads/hots_2.jpg" alt="">
-            </a>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="head">
-            <a href="javascript:;">星球大战：原力觉醒视频演示 电影票68</a>
-          </div>
-          <div class="main">
-            <p class="info">admin 发表于 2020-02-01</p>
-            <p class="brief">
-              星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯
-            </p>
-            <p class="extra">
-              <span class="reading">阅读(3406)</span>
-              <span class="comment">评论(0)</span>
-              <a href="javascript:;" class="like">
-                <i class="fa fa-thumbs-up"></i>
-                <span>赞(167)</span>
-              </a>
-              <a href="javascript:;" class="tags">
-                分类：<span>星球大战</span>
-              </a>
-            </p>
-            <a href="javascript:;" class="thumb">
-              <img src="uploads/hots_2.jpg" alt="">
-            </a>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="head">
-            <a href="javascript:;">星球大战：原力觉醒视频演示 电影票68</a>
-          </div>
-          <div class="main">
-            <p class="info">admin 发表于 2020-02-01</p>
-            <p class="brief">
-              星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯，星球大战:原力觉醒：《星球大战:原力觉醒》中国首映盛典红毯
-            </p>
-            <p class="extra">
-              <span class="reading">阅读(3406)</span>
-              <span class="comment">评论(0)</span>
-              <a href="javascript:;" class="like">
-                <i class="fa fa-thumbs-up"></i>
-                <span>赞(167)</span>
-              </a>
-              <a href="javascript:;" class="tags">
-                分类：<span>星球大战</span>
-              </a>
-            </p>
-            <a href="javascript:;" class="thumb">
-              <img src="uploads/hots_2.jpg" alt="">
-            </a>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="footer">
@@ -280,8 +161,7 @@
   <script src="assets/vendors/jquery/jquery.min.js"></script>
   <script src="assets/js/publick.js"></script>
   <script src="assets/vendors/art-template/template-web.js"></script>
-  <script type="text/html" id="tmp">
-    <h3>{{data[0] && data[0].category.title}}</h3>
+  <script type="text/html" id="searchtmp">
     {{each data}}
     <div class="entry">
       <div class="head">
@@ -309,13 +189,14 @@
     </div>
   {{/each}}
   </script>
+  <!-- 搜索结果请求 -->
   <script>
     $.ajax({
         type:'get',
-        url:'/posts/category/'+id,
+        url:'/posts/search/'+keys,
         success:function(res){
           console.log(res);
-          let html=template('tmp',{data:res});
+          let html=template('searchtmp',{data:res});
           $('.new').html(html)
           
         }

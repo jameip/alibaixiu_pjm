@@ -285,7 +285,7 @@
 <script type="text/html" id="tmp2">
   {{each data}}
   <li>
-    <a href="javascript:;">
+    <a href="detail.html?id={{@$value._id}}">
       <img src="{{$value.thumbnail}}" alt="">
       <span>{{$value.title}}</span>
     </a>
@@ -298,7 +298,7 @@
   <div class="entry">
     <div class="head">
       <span class="sort">{{$value.category.title}}</span>
-      <a href="javascript:;">{{$value.title}}</a>
+      <a href="detail.html?id={{@$value._id}}">{{$value.title}}</a>
     </div>
     <div class="main">
       <p class="info">{{$value.author.nickName}} 发表于 {{$value.createAt.substr(0,10)}}</p>
@@ -310,11 +310,11 @@
           <i class="fa fa-thumbs-up"></i>
           <span>赞({{$value.meta.likes}})</span>
         </a>
-        <a href="javascript:;" class="tags">
+        <a href="list.html?id={{@$value._id}}" class="tags">
           分类：<span>{{$value.category.title}}</span>
         </a>
       </p>
-      <a href="javascript:;" class="thumb">
+      <a href="detail.html?id={{@$value._id}}" class="thumb">
         <img src="{{$value.thumbnail}}" alt="">
       </a>
     </div>

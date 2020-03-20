@@ -1,3 +1,17 @@
+<script>
+  function getParms(key) {
+    let parms = location.search.substr(1).split('&');
+    for (var i = 0; i < parms.length; i++) {
+      let temp = parms[i].split('=')
+      if (temp[0] == key) return temp[1]
+    }
+    return -1;
+  }
+  let id = getParms('id');
+  if (id == -1) {
+    location.href = 'index.html'
+  }
+</script>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -178,7 +192,7 @@
     </div>
     <div class="content">
       <div class="article">
-        <div class="breadcrumb">
+        <!-- <div class="breadcrumb">
           <dl>
             <dt>当前位置：</dt>
             <dd><a href="javascript:;">奇趣事</a></dd>
@@ -193,12 +207,12 @@
           <span>分类: <a href="javascript:;">奇趣事</a></span>
           <span>阅读: (2421)</span>
           <span>评论: (143)</span>
-        </div>
+        </div> -->
       </div>
       <div class="panel hots">
         <h3>热门推荐</h3>
         <ul>
-          <li>
+          <!-- <li>
             <a href="javascript:;">
               <img src="uploads/hots_2.jpg" alt="">
               <span>星球大战:原力觉醒视频演示 电影票68</span>
@@ -221,7 +235,7 @@
               <img src="uploads/hots_5.jpg" alt="">
               <span>实在太邪恶！照亮妹纸绝对领域与私处</span>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -232,5 +246,68 @@
   <script src="assets/vendors/jquery/jquery.min.js"></script>
   <script src="assets/js/publick.js"></script>
   <script src="assets/vendors/art-template/template-web.js"></script>
+  <!-- 热门推荐 -->
+  <script type="text/html" id="tmpl">
+    {{each data}}
+    <li>
+      <a href="detail.html?id={{@$value._id}}">
+        <img src="{{$value.thumbnail}}" alt="">
+        <span>{{$value.title}}</span>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <!-- 当前id获取的文章内容 -->
+  <script type="text/html" id=tmpla>
+        <div class="breadcrumb">
+          <dl>
+            <dt>当前位置：</dt>
+            <dd><a href="list.html?id={{@category._id}}">{{category.title}}</a></dd>
+            <dd>{{title}}</dd>
+          </dl>
+        </div>
+        <h2 class="title">
+          <a href="javascript:;">{{content}}</a>
+        </h2>
+        <div class="meta">
+          <span>DUX主题小秘 发布于 {{createAt && createAt.substr(0,10)}}</span>
+          <span>分类: <a href="list.html?id={{@category._id}}">{{category.title}}</a></span>
+          <span>阅读: ({{meta.views}})</span>
+          <span>评论: ({{meta.comments}})</span>
+          <a href="javascript:;" id="good">赞</a>
+        </div>
+
+  </script>
+  <script>
+    // 热门推荐
+    $.ajax({
+    type: 'get',
+    url: '/posts/recommend',
+    success: function (res) {
+        // console.log(res);
+        let html = template('tmpl', { data: res });
+        $('.hots ul').html(html)
+    }
+})
+  // 文章内容
+  $.ajax({
+    type:'get',
+    url:'/posts/'+id,
+    success:function(res){
+      // console.log(res);
+      let html=template('tmpla',res)
+      $('.article').html(html)
+    }
+  })
+  $('.article').on('click','#good',function(){
+    $.ajax({
+      type:'post',
+      url:'/posts/fabulous/'+id,
+      success:function(res){
+        alert('点赞成功')
+      }
+    })
+  })
+  </script>
 </body>
 </html>
